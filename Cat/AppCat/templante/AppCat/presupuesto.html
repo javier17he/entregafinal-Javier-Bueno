@@ -1,0 +1,75 @@
+{% extends 'AppCat/index.html' %}
+
+{% block js %}
+<script>
+    function eliminarPresupuesto(id) {
+        Swal.fire({
+            title: "¿Estás seguro?",
+            text: "Esta acción no se puede deshacer",
+            icon: "question",
+            showCancelButton: true,
+            cancelButtonText: "No, Cancelar",
+            confirmButtonText: "Si, Eliminar",
+            reverseButtons: true,
+            confirmButtonColor: "#dc3545",
+        }).then(function(result) {
+            if (result.isConfirmed) {
+                // Redireccionar a la URL de eliminación del cliente
+                window.location.href = "../eliminar_presupuesto/" + id +"/";
+            }
+        });
+    }
+</script>
+{% endblock %}
+{% block css %}
+{% endblock %}
+
+{% block contenido %}
+<br>
+<div class="d-flex justify-content-end">
+    {% if user.is_staff or user.is_superuser %}
+    <a href="{% url 'agregar_presupuesto' %}" id="guardar" class=" btn btn-primary">Crear presupuesto</a>
+    {% endif %}
+</div>
+<br>
+<div class="galeria">
+
+{% for p in entity %}
+<div class="producto">
+    <div class="contenedor">
+        {% if p.imagen %}
+        <img src="{{ p.imagen.url }}" alt="yoga">
+        {% endif %}
+    </div>
+
+    <div class="detalles">
+        <h5>{{p.nombre | capfirst}}</h5>
+        <h2>{{p.tipo | title}}</h2>
+        {% if p.comercial %}
+        <h3>Comercial</h3>
+        {% else %}
+        <h3>Residencial</h3>
+        {% endif %}
+        <h6>{{ p.descripcion | capfirst }}</h6>
+    </div>
+    <div class="d-flex justify-content-end">
+    {% if user.is_superuser %}
+    <a href="#" onclick="eliminarPresupuesto('{{ p.id }}')"class="btn btn-danger btn-sm">Borrar</a>
+    {% endif %}
+    &nbsp;
+    {% if user.is_superuser or user.is_staff %}
+    <a href="{% url 'editar_presupuesto' p.id %}" id="guardar" class=" btn btn-primary btn-sm">Editar</a>
+    {% endif %}
+    </div>
+    
+</div>
+{% endfor %}
+</div>
+<hr>
+<div>
+    {% include 'AppCat/index.html' %}
+</div>
+{{ mensaje }}
+
+
+{% endblock %}
