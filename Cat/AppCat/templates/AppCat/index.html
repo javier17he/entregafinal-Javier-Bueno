@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
+        {% load static %}
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
         <meta name="description" content="" />
@@ -16,7 +17,7 @@
         <!-- Core theme CSS (includes Bootstrap)-->
         {% block css %}
         {% endblock %}
-        <link rel="stylesheet" href="css\styles.css">
+        <link rel="stylesheet" href="{% static 'css\styles.css}">
     </head>
     <body id="page-top">
         <!-- Navigation-->
@@ -37,7 +38,7 @@
                                 onmouseover="this.style.backgroundColor='#FFFFFF10'" onmouseout="this.style.backgroundColor='transparent'" class="btn btn-primary">Compra</button></a>
                         </li>
                         <li>
-                            <a href="{% url 'presupusto' %}"><button style="background-color: transparent; border: 2px solid white; color: white; transition: background-color 0.3s;"
+                            <a href="{% url 'presupuesto' %}"><button style="background-color: transparent; border: 2px solid white; color: white; transition: background-color 0.3s;"
                                 onmouseover="this.style.backgroundColor='#FFFFFF10'" onmouseout="this.style.backgroundColor='transparent'" class="btn btn-primary">Presupuesti</button></a>
                         </li>
                         {% if user.is_staff or user.is_superuser %}
