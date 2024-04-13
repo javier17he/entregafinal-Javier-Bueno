@@ -35,7 +35,6 @@
 {% endblock %}
 {% block css %} {% endblock %}
 {% block contenido %}
-{% load crispy_forms_tags %}
 <body>
     <br>
 <div class="d-flex justify-content-end">
@@ -53,7 +52,6 @@
                 <hr>
                 <form action="" method="POST" enctype="multipart/form-data">
                     {% csrf_token %}
-                    {{ form | crispy }}
                     <hr>
                     <div class="d-flex justify-content-end">
                         <button type="reset" class="btn btn-secondary">Limpiar</button>

@@ -37,7 +37,6 @@
 {% block contenido %}
 
     <body>
-        {% load crispy_forms_tags %}
         <div class="container">
             <br>
             <br>
@@ -50,7 +49,6 @@
                 <hr>
                 <form action="" method="POST">
                     {% csrf_token %}
-                    {{ form | crispy }}
                     <br>
                     <a href="{% url 'home' %}">ir al home</a>
                     <a href="{% url 'registro' %}">registrarse</a>

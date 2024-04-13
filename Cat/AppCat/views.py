@@ -256,7 +256,7 @@ def agregar_presupuesto(request):
 
 #Ver
 def presupuesto(request):
-    proyectos = presupuesto.objects.all()
+    presupuesto = presupuesto.objects.all()
     page = request.GET.get('page', 1)
 
     try:
